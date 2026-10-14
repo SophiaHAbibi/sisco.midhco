@@ -14,4 +14,12 @@ export const OFFICIAL_MEDIA = {
   news2: 'https://sisco.midhco.com/upload/thumb1/news/1782211604.jpg',
 } as const;
 export type MediaKey=keyof typeof OFFICIAL_MEDIA;
-export const mediaSrc=(key:MediaKey):string=>LOCAL_MEDIA[key]??OFFICIAL_MEDIA[key];
+/** Web-optimized conceptual visuals, not photographs of SISCO facilities or products. */
+export const CONCEPT_MEDIA: Partial<Record<MediaKey,string>> = {
+  hero: '/assets/concept/hero.webp',
+  concentrate: '/assets/concept/concentrate.webp',
+  pellet: '/assets/concept/pellet.webp',
+  sponge: '/assets/concept/sponge.webp',
+  billet: '/assets/concept/billet.webp'
+};
+export const mediaSrc=(key:MediaKey):string=>CONCEPT_MEDIA[key]??LOCAL_MEDIA[key]??OFFICIAL_MEDIA[key];

@@ -13,13 +13,13 @@ export default function HeroShowcase(){
  const slide=slides[active];
  const go=(step:number)=>setActive(index=>(index+step+slides.length)%slides.length);
  return <section className="hero hero-slider" aria-label="معرفی فعالیت‌های شرکت">
-   <div className="hero-slide-background" key={slide.image}><MediaPhoto image={slide.image} alt={active===0?'تصویر منتشرشده در وب‌سایت رسمی فولاد سیرجان ایرانیان':active===1?'تصویر محصول گندله سنگ‌آهن':'تصویر محصول شمش فولادی' } priority={active===0}/></div>
+   <div className="hero-slide-background" key={slide.image}><MediaPhoto image={slide.image} alt={active===0?'تصویرسازی مفهومی از یک مجتمع فولاد و معدن':active===1?'تصویرسازی مفهومی از گندله سنگ‌آهن':'تصویرسازی مفهومی از شمش فولادی'} priority={active===0}/></div>
    <div className="container hero-grid"><div className="hero-copy" key={active}>
      <span className="hero-overline">{slide.kicker}</span>
      <h1>{slide.title}<br/><em>{slide.emphasis}</em></h1>
      <p>{slide.desc}</p>
      <div className="hero-actions"><Link href={slide.href} className="btn btn-primary">{slide.button}<Icon name="arrow"/></Link><Link href="/products/" className="btn btn-outline">مشاهده محصولات <Icon name="factory"/></Link></div>
-   </div><span className="hero-watermark" aria-hidden="true">SISCO</span><span className="hero-bottom"><span className="stripe"/> SIRJAN IRANIAN STEEL COMPANY / 2009</span>
+   </div><span className="hero-photo-note">تصویرسازی مفهومی</span><span className="hero-watermark" aria-hidden="true">SISCO</span><span className="hero-bottom"><span className="stripe"/> SIRJAN IRANIAN STEEL COMPANY / 2009</span>
    <div className="hero-slider-controls" aria-label="کنترل اسلایدر">
      <button type="button" onClick={()=>go(-1)} aria-label="اسلاید قبلی">←</button>
      <span className="hero-slide-index" dir="ltr">0{active+1} / 0{slides.length}</span>

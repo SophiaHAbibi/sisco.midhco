@@ -20,7 +20,7 @@ export default function ProductDetail({id}:{id:ProductId}){
    </section>
    <div className="container product-detail-main">
      <section className="product-feature" aria-label="معرفی محصول">
-       <div className="product-photo-panel"><MediaPhoto image={id} alt={`تصویر ${product.title} منتشرشده در وب‌سایت رسمی فولاد سیرجان ایرانیان`}/><span className="product-image-label">تصویر رسمی محصول • SISCO</span></div>
+       <div className="product-photo-panel"><MediaPhoto image={id} alt={`تصویرسازی مفهومی از ${product.title}`}/><span className="product-image-label">تصویر مفهومی محصول • SISCO</span></div>
        <div className="product-intro">
          <span className="eyebrow">معرفی محصول</span>
          <h2>{product.title}</h2>
