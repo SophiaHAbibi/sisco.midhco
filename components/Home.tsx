@@ -1,3 +1,4 @@
+import {toPersianCounter} from '@/lib/persian-numbers';
 import Link from 'next/link';
 import { SITE, PRODUCTS, COMPLEXES, NEWS, OUTBOUND } from '@/lib/site-data';
 import SmartLink from './SmartLink';
@@ -30,7 +31,7 @@ export default function Home(){return <>
     <Link href="/about/" className="btn btn-primary">بیشتر درباره فولاد سیرجان <Icon name="arrow"/></Link>
   </div><div className="about-visual"><MediaPhoto image="hero" alt="طرح گرافیکی زنجیره معدن و فولاد"/><div className="about-stamp"><strong>۱۳۸۸</strong><span>سال تأسیس</span></div><div className="about-visual-label">صنعتی ریشه‌دار، فردایی روشن<span>FROM ORE TO STEEL</span></div></div></div></section>
   <section className="section complexes-section" id="complexes"><div className="container"><SectionHead kicker="ظرفیت‌های تولید" title="دو مجتمع، یک زنجیره یکپارچه" description="از واحدهای استخراج و فرآوری در سیرجان تا احیای مستقیم و فولادسازی در بردسیر." action={{title:'مشاهده مجتمع‌ها',href:'/complexes/'}}/>
-    <div className="complex-grid">{COMPLEXES.map((c,i)=><Link href={`/complexes/${c.id}/`} className="complex-card" key={c.id}><MediaPhoto image={c.id==='sirjan'?'sirjan':'bardsir'} alt={`تصویر مرتبط با ${c.short}`}/><div className="complex-content"><span className="complex-index">0{i+1} / {c.en}</span><h3>{c.title}</h3><p>{c.subtitle}</p><div className="complex-footer"><span>{c.facilities.map(x=>x.title).join(' • ')}</span><span className="complex-arrow"><Icon name="arrow"/></span></div></div></Link>)}</div>
+    <div className="complex-grid">{COMPLEXES.map((c,i)=><Link href={`/complexes/${c.id}/`} className="complex-card" key={c.id}><MediaPhoto image={c.id==='sirjan'?'sirjan':'bardsir'} alt={`تصویر مرتبط با ${c.short}`}/><div className="complex-content"><span className="complex-index">{toPersianCounter(i+1)} / {c.en}</span><h3>{c.title}</h3><p>{c.subtitle}</p><div className="complex-footer"><span>{c.facilities.map(x=>x.title).join(' • ')}</span><span className="complex-arrow"><Icon name="arrow"/></span></div></div></Link>)}</div>
   </div></section>
   <section className="section"><div className="container"><SectionHead kicker="رسانه و اطلاع‌رسانی" title="تازه‌ترین رویدادهای شرکت" description="اخبار شرکت، پروژه‌ها و اطلاعیه‌های رسمی را دنبال کنید." action={{title:'آرشیو اخبار',href:'/news/'}}/>
     <div className="news-grid">{NEWS.map(n=><article className="news-card" key={n.id}><div className="news-img"><MediaPhoto image={`news${NEWS.indexOf(n)}` as 'news0'|'news1'|'news2'} alt={n.title}/><span className="news-pill">{n.kind}</span></div><div className="news-copy"><h3>{n.title}</h3><p>{n.desc}</p><SmartLink className="action-link" href={n.href}>مطالعه خبر <Icon name="arrow" size={17}/></SmartLink></div></article>)}</div>

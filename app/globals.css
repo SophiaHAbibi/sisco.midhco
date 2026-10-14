@@ -307,3 +307,32 @@ body{background:#fff;color:var(--ink)}
   .product-explorer-stage{animation:none}
   .about-visual,.complex-card,.news-card,.portal-card,.corporate-complex-link,.metric{transition:none}
 }
+
+
+/* Consistent Persian-digit typography across corporate counters and UI numbers.
+   Exact digits are formatted in TSX so this does not alter machine-readable values. */
+.metric-num,
+.hero-slide-index,
+.hero-tab-meta,
+.hero-bottom,
+.hero-tab-meta,
+.explorer-stamp,
+.explorer-counter,
+.explorer-option-number,
+.explorer-selector-head .eyebrow,
+.product-kicker,
+.product-spec-index,
+.product-process li span,
+.complex-index,
+.corporate-feature-no,
+.chain-number,
+.product-masthead-line,
+.product-photo-tile .product-list-caption,
+.contact-card small,
+.contact-card a,
+.contact-grid b,
+.footer-contact a,
+.info-panel b {
+  font-family: 'Vazirmatn', Tahoma, sans-serif;
+  font-feature-settings: normal;
+}

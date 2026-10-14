@@ -1,3 +1,4 @@
+import {toPersianCounter} from '@/lib/persian-numbers';
 import Link from 'next/link';
 import type {ReactNode} from 'react';
 import {SITE,PRODUCTS,COMPLEXES,MENU} from '@/lib/site-data';
@@ -24,7 +25,7 @@ const policyContent:Record<string,{lead:string;points:string[]}>= {
  'integrated-policy':{lead:'سیستم مدیریت یکپارچه، چارچوبی برای توجه هماهنگ به کیفیت، محیط زیست، ایمنی و سلامت کارکنان در واحدهای تولیدی است.',points:['بهبود مستمر کیفیت عملیات و محصولات','پیشگیری از حوادث و حفاظت از سلامت کارکنان','مدیریت اثرات زیست‌محیطی فعالیت‌ها','توجه به الزامات قانونی و الزامات مرتبط با ذی‌نفعان']},
 };
 function Intro({children}:{children:ReactNode}){return <p className="corporate-lead">{children}</p>}
-function FeatureGrid({items}:{items:{title:string;description:string}[]}){return <div className="corporate-feature-grid">{items.map((item,i)=><section className="corporate-feature" key={item.title}><span className="corporate-feature-no">{String(i+1).padStart(2,'0')}</span><h3>{item.title}</h3><p>{item.description}</p></section>)}</div>}
+function FeatureGrid({items}:{items:{title:string;description:string}[]}){return <div className="corporate-feature-grid">{items.map((item,i)=><section className="corporate-feature" key={item.title}><span className="corporate-feature-no">{toPersianCounter(i+1)}</span><h3>{item.title}</h3><p>{item.description}</p></section>)}</div>}
 function BulletList({items}:{items:string[]}){return <ul className="corporate-points">{items.map(x=><li key={x}>{x}</li>)}</ul>}
 function BoardGrid({items}:{items:string[][]}){return <div className="manager-grid">{items.map(([name,role])=><article className="manager-card" key={name}><div className="manager-monogram" aria-hidden="true">{name.slice(0,1)}</div><div><h3>{name}</h3><p>{role}</p></div></article>)}</div>}
 function Availability({title,description}:{title:string;description:string}){return <section className="migration-note" aria-label="وضعیت انتشار فایل"><h3>{title}</h3><p>{description}</p><p>برای دریافت سند تأییدشده با <a href={`mailto:${SITE.email}`}>دبیرخانه شرکت</a> تماس بگیرید. فایل قابل دانلود پس از دریافت نسخه مصوب در همین صفحه منتشر می‌شود.</p></section>}

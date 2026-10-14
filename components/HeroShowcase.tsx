@@ -1,3 +1,4 @@
+import {toPersianCounter, toPersianDigits} from '@/lib/persian-numbers';
 'use client';
 import {useEffect,useState} from 'react';
 import Link from 'next/link';
@@ -48,16 +49,16 @@ export default function HeroShowcase(){
       <div className="hero-actions"><Link href={slide.href} className="btn btn-primary">{slide.button}<Icon name="arrow"/></Link><Link href="/products/" className="btn btn-outline">مشاهده محصولات <Icon name="factory"/></Link></div>
     </div>
     <span className="hero-watermark" aria-hidden="true">SISCO</span>
-    <span className="hero-bottom"><span className="stripe"/> SIRJAN IRANIAN STEEL COMPANY / 2009</span>
+    <span className="hero-bottom"><span className="stripe"/> SIRJAN IRANIAN STEEL COMPANY / ۲۰۰۹</span>
     <div className="hero-slider-controls" aria-label="کنترل اسلایدر">
       <button type="button" onClick={()=>go(-1)} aria-label="اسلاید قبلی">←</button>
-      <span className="hero-slide-index" dir="ltr">0{active+1} / 0{slides.length}</span>
+      <span className="hero-slide-index" dir="ltr">{toPersianCounter(active+1)} / {toPersianCounter(slides.length)}</span>
       <button type="button" onClick={()=>go(1)} aria-label="اسلاید بعدی">→</button>
       <button type="button" className="hero-pause-button" onClick={()=>setManuallyPaused(value=>!value)} aria-label={manuallyPaused?'پخش خودکار اسلایدر':'توقف پخش خودکار اسلایدر'} aria-pressed={manuallyPaused}>{manuallyPaused?'▶':'Ⅱ'}</button>
     </div>
     <div className="hero-slide-tabs" aria-label="انتخاب اسلاید">
-      {slides.map((s,i)=><button className={`hero-slide-tab ${i===active?'is-active':''}`} type="button" key={s.image} aria-label={`اسلاید ${i+1}: ${s.preview}`} aria-pressed={i===active} onClick={()=>setActive(i)}>
-        <span className="hero-tab-meta" dir="ltr">0{i+1} <span>—</span> 03</span><strong>{s.preview}</strong>
+      {slides.map((s,i)=><button className={`hero-slide-tab ${i===active?'is-active':''}`} type="button" key={s.image} aria-label={`اسلاید ${toPersianDigits(i+1)}: ${s.preview}`} aria-pressed={i===active} onClick={()=>setActive(i)}>
+        <span className="hero-tab-meta" dir="ltr">{toPersianCounter(i+1)} <span>—</span> {toPersianCounter(slides.length)}</span><strong>{s.preview}</strong>
         <span className="hero-tab-track"><span className="hero-tab-progress" key={i===active?`playing-${active}`:'idle'} style={{animationPlayState:paused?'paused':'running'}}/></span>
       </button>)}
     </div>
