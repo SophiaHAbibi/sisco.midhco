@@ -38,7 +38,7 @@ export default function HeroShowcase(){
     onFocusCapture={()=>setHovered(true)}
     onBlurCapture={event=>{if(!event.currentTarget.contains(event.relatedTarget as Node))setHovered(false);}}>
     <div className="hero-slide-background" key={slide.image}>
-      <MediaPhoto image={slide.image} alt={active===0?'تصویرسازی مفهومی از یک مجتمع معدن و فولاد':active===1?'تصویرسازی مفهومی گندله سنگ‌آهن':'تصویرسازی مفهومی شمش فولادی'} priority={active===0}/>
+      <MediaPhoto image={slide.image} alt={active===0?'طرح گرافیکی مجتمع معدن و فولاد':active===1?'طرح گرافیکی گندله سنگ‌آهن':'طرح گرافیکی شمش فولادی'} priority={active===0}/>
     </div>
     <div className="hero-shape" aria-hidden="true"/>
     <div className="container hero-grid"><div className="hero-copy" key={active}>
@@ -47,7 +47,6 @@ export default function HeroShowcase(){
       <p>{slide.desc}</p>
       <div className="hero-actions"><Link href={slide.href} className="btn btn-primary">{slide.button}<Icon name="arrow"/></Link><Link href="/products/" className="btn btn-outline">مشاهده محصولات <Icon name="factory"/></Link></div>
     </div>
-    <span className="hero-photo-note">تصویرسازی مفهومی</span>
     <span className="hero-watermark" aria-hidden="true">SISCO</span>
     <span className="hero-bottom"><span className="stripe"/> SIRJAN IRANIAN STEEL COMPANY / 2009</span>
     <div className="hero-slider-controls" aria-label="کنترل اسلایدر">

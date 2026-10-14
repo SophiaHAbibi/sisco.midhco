@@ -25,7 +25,7 @@ export function ProductsPage({id}:{id?:string}){
   return <><PageHero kicker="زنجیره تولید" title="محصولات شرکت" desc="چهار محصول اصلی در امتداد زنجیره تولید فولاد"/>
     <div className="inner-section"><div className="container"><div className="product-list">
       {PRODUCTS.map(product=><Link href={`/products/${product.id}/`} className="product-tile product-photo-tile" key={product.id}>
-        <MediaPhoto image={product.id as ProductId} alt={`تصویرسازی مفهومی از ${product.title}`}/>
+        <MediaPhoto image={product.id as ProductId} alt={`طرح گرافیکی ${product.title}`}/>
         <span className="product-list-caption">{product.en}</span><h3>{product.title}</h3><p>{product.desc}</p>
         <span className="action-link">جزئیات محصول <Icon name="arrow"/></span>
       </Link>)}

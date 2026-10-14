@@ -9,7 +9,7 @@ export default function ProductExplorer({items}:{items:ProductPreview[]}){
   const current=items[active];
   return <div className="product-explorer" aria-label="مرور تعاملی محصولات">
     <div className="product-explorer-stage" key={current.id}>
-      <img className="explorer-stage-image" src={current.src} alt={`تصویرسازی مفهومی از ${current.title}`} loading="lazy" decoding="async"/>
+      <img className="explorer-stage-image" src={current.src} alt={`طرح گرافیکی ${current.title}`} loading="lazy" decoding="async"/>
       <span className="explorer-stamp">SISCO / PRODUCT 0{active+1}</span>
       <span className="explorer-vertical">STEEL VALUE CHAIN</span>
       <div className="explorer-stage-copy">
@@ -18,7 +18,6 @@ export default function ProductExplorer({items}:{items:ProductPreview[]}){
         <p>{current.desc}</p>
         <Link href={`/products/${current.id}/`} className="explorer-detail-link">مشاهده جزئیات محصول <span aria-hidden="true">↗</span></Link>
       </div>
-      <span className="explorer-disclosure">تصویر مفهومی محصول</span>
     </div>
     <div className="product-explorer-selector">
       <div className="explorer-selector-head"><span className="eyebrow">VALUE CHAIN / 04</span><h3>زنجیره تولید<br/><em>در چهار گام</em></h3><p>برای آشنایی با هر محصول، روی مرحله موردنظر انتخاب کنید.</p></div>
