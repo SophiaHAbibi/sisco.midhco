@@ -1,5 +1,5 @@
-import {toPersianCounter, toPersianDigits} from '@/lib/persian-numbers';
 'use client';
+import {toPersianCounter, toPersianDigits} from '@/lib/persian-numbers';
 import {useEffect,useState} from 'react';
 import Link from 'next/link';
 import Icon from './Icon';
