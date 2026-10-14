@@ -20,10 +20,11 @@ export const COMPLEXES = [
   {id:'bardsir',title:'مجتمع احیای مستقیم و فولادسازی بردسیر',short:'مجتمع بردسیر',en:'BARDSIR COMPLEX',subtitle:'تبدیل مواد اولیه به آهن اسفنجی و فولاد',facilities:[{title:'کارخانه احیای مستقیم',source:legacy('/fa/page/mb-ehya.html')},{title:'کارخانه فولادسازی',source:legacy('/fa/')}],desc:'واحدهای احیای مستقیم و فولادسازی در شهر بردسیر استان کرمان بخش پایانی زنجیره تولید را شکل می‌دهند.',photo:'bardsir'}
 ];
 export const NEWS = [
-  {id:'recruitment',kind:'فرصت‌های شغلی',title:'آگهی شناسایی و جذب نیروی انسانی',desc:'اطلاعیه رسمی استخدام و جذب نیروی انسانی شرکت فولاد سیرجان ایرانیان.',href:legacy('/fa/news.html'),tone:'careers'},
-  {id:'dividend',kind:'امور سهام',title:'تصویب سود نقدی ۲۸۹ ریالی در مجمع عمومی عادی به‌طور فوق‌العاده',desc:'اطلاعیه منتشرشده درباره تصمیمات مجمع شرکت.',href:legacy('/fa/news.html'),tone:'financial'},
-  {id:'meeting',kind:'آگهی شرکت',title:'آگهی دعوت به مجمع عمومی عادی به‌طور فوق‌العاده',desc:'آخرین اطلاعات و آگهی رسمی برگزاری مجامع شرکت.',href:legacy('/fa/news.html'),tone:'meeting'}
+ {id:'recruitment-1405',kind:'فرصت‌های شغلی',title:'آگهی شناسایی و جذب نیروی انسانی',desc:'اطلاعیه جذب نیروی متخصص برای مجتمع سیرجان در تیرماه ۱۴۰۵.',href:'/news/recruitment-1405/',tone:'recruitment'},
+ {id:'dividend-289',kind:'امور سهام',title:'تصویب سود نقدی ۲۸۹ ریالی در مجمع عمومی فوق‌العاده',desc:'اطلاعیه تصمیم مجمع درباره سود نقدی سهامداران.',href:'/news/dividend-289/',tone:'dividend'},
+ {id:'assembly-invitation',kind:'آگهی مجمع',title:'آگهی دعوت به مجمع عمومی عادی به‌طور فوق‌العاده',desc:'آگهی دعوت سهامداران فولاد سیرجان ایرانیان به مجمع.',href:'/news/assembly-invitation/',tone:'assembly'}
 ];
+
 // Every known visible top-level and submenu item is preserved in this content map.
 export const MENU = [
   {title:'درباره ما',id:'about',groups:[

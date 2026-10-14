@@ -1,4 +1,4 @@
-import { MENU, PRODUCTS, COMPLEXES } from './site-data';
+import { MENU, PRODUCTS, COMPLEXES, NEWS } from './site-data';
 
 /** Direct links to corporate tools remain offsite. We never proxy internal services. */
 const outgoingIds = new Set([
@@ -28,6 +28,7 @@ export function allStaticSlugs(): string[][] {
     ...base.map(x=>[x]),
     ...PRODUCTS.map(p=>['products',p.id]),
     ...COMPLEXES.map(c=>['complexes',c.id]),
+    ...NEWS.map(n=>['news',n.id]),
     ...MENU.flatMap(m=>m.groups.flatMap(g=>g.items.map(([,id,url])=>({id,href:resolveHref(id,url)}))))
       .filter(x=>x.href.startsWith('/info/')).map(x=>['info',x.id]),
   ].filter((parts,idx,arr)=>arr.findIndex(x=>x.join('/')===parts.join('/'))===idx);

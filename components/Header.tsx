@@ -46,7 +46,7 @@ export default function Header() {
       <span className="top-actions">
         <SmartLink href="https://siscomidhco.adilar.com/" className="top-career">فرصت‌های شغلی</SmartLink>
         <Link href="/shareholders/">امور سهام</Link>
-        <SmartLink href={`${SITE.legacy}/en`}>EN</SmartLink>
+        <Link href="/directory/">نقشه سایت</Link>
       </span>
     </div></div>
     <header className="nav-wrap"><div className="container nav-inner">

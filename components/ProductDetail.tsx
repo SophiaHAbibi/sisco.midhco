@@ -26,7 +26,7 @@ export default function ProductDetail({id}:{id:ProductId}){
          <h2>{product.title}</h2>
          <p>{detail.intro}</p>
          <div className="product-origin"><Icon name="factory" size={20}/><div><small>مجتمع مرتبط</small><strong>{detail.facility}</strong></div></div>
-         <div className="product-intro-actions"><Link href="/contact/" className="btn btn-primary">ارتباط با شرکت <Icon name="arrow" size={16}/></Link><a href={detail.source} target="_blank" rel="noopener noreferrer" className="product-official-link">مشاهده صفحه محصول در سایت رسمی ↗</a></div>
+         <div className="product-intro-actions"><Link href="/contact/" className="btn btn-primary">ارتباط با شرکت <Icon name="arrow" size={16}/></Link><Link href="/complexes/" className="product-official-link">آشنایی با مجتمع‌های تولیدی ←</Link></div>
        </div>
      </section>
      <section className="product-specs-section" aria-labelledby="product-specs-title">
