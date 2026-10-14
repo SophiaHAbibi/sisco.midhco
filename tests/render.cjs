@@ -7,7 +7,7 @@ const root=path.resolve(__dirname,'..');
 const cache=new Map();
 const jsx=(type,props)=>({type,props:props||{}});
 function reactModule(name){
-  if(name==='react')return {useState:(value)=>[typeof value==='function'?value():value,()=>{}]};
+  if(name==='react')return {useState:(value)=>[typeof value==='function'?value():value,()=>{}],useEffect:()=>{},useRef:(value)=>({current:value}),useMemo:(fn)=>fn(),useCallback:(fn)=>fn};
   if(name==='react/jsx-runtime')return {jsx,jsxs:jsx,Fragment:Symbol.for('Fragment')};
   if(name==='next/link')return {__esModule:true,default:({children,...props})=>jsx('a',{...props,children})};
   if(name==='next/navigation')return {notFound:()=>{throw new Error('NOT_FOUND')}};

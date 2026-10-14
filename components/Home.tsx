@@ -3,6 +3,8 @@ import { SITE, PRODUCTS, COMPLEXES, NEWS, OUTBOUND } from '@/lib/site-data';
 import SmartLink from './SmartLink';
 import Icon from './Icon';
 import HeroShowcase from './HeroShowcase';
+import ProductExplorer from './ProductExplorer';
+import {mediaSrc} from '@/lib/media';
 import MediaPhoto from './MediaPhoto';
 import type {ProductId} from '@/lib/product-details';
 
@@ -21,9 +23,7 @@ export default function Home(){return <>
   </div></section>
   <section className="section chain-section" id="products"><div className="container">
     <SectionHead kicker="زنجیره ارزش" title="از سنگ آهن تا شمش فولادی" description="چهار حلقه به‌هم‌پیوسته از استخراج و فرآوری تا احیا و فولادسازی؛ محصولات اصلی فولاد سیرجان ایرانیان." action={{title:'مشاهده همه محصولات',href:'/products/'}}/>
-    <div className="chain-grid">{PRODUCTS.map(p=><Link href={`/products/${p.id}/`} key={p.id} className="chain-card">
-      <MediaPhoto image={p.id as ProductId} alt={`تصویرسازی مفهومی از ${p.title}`}/><span className="chain-number">{p.no} / 04</span><h3>{p.title}</h3><p>{p.desc}</p><span className="chain-en">{p.en}</span><span className="chain-more" aria-hidden="true"><Icon name="arrow"/></span>
-    </Link>)}</div>
+    <ProductExplorer items={PRODUCTS.map(p=>({id:p.id,no:p.no,title:p.title,en:p.en,desc:p.desc,src:mediaSrc(p.id as ProductId)}))}/>
   </div></section>
   <section className="section" id="about"><div className="container about-grid"><div className="about-copy"><span className="eyebrow">درباره شرکت</span><h2 className="section-title">ریشه در معدن،<br/>نگاه به آینده</h2><p>{SITE.description}</p>
     <div className="about-facts">{[['شماره ثبت','۳۶۲۱۱۱'],['شناسه ملی','۱۰۱۰۴۰۸۸۲۲۵'],['دفاتر ستادی','تهران و کرمان'],['پایگاه‌های تولید','سیرجان و بردسیر']].map(([label,value])=><div className="fact" key={label}><small>{label}</small><strong>{value}</strong></div>)}</div>
