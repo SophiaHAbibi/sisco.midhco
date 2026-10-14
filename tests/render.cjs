@@ -7,6 +7,7 @@ const root=path.resolve(__dirname,'..');
 const cache=new Map();
 const jsx=(type,props)=>({type,props:props||{}});
 function reactModule(name){
+  if(name==='react')return {useState:(value)=>[typeof value==='function'?value():value,()=>{}]};
   if(name==='react/jsx-runtime')return {jsx,jsxs:jsx,Fragment:Symbol.for('Fragment')};
   if(name==='next/link')return {__esModule:true,default:({children,...props})=>jsx('a',{...props,children})};
   if(name==='next/navigation')return {notFound:()=>{throw new Error('NOT_FOUND')}};
@@ -49,6 +50,11 @@ function html(node){
   const markup=html(react);
   assert.ok(markup.includes('<div>'),'No content for /'+slug.join('/'));
   assert.ok(markup.includes('<h1>') && markup.length > 300,'Missing page body at /'+slug.join('/'));
+ }
+ for(const product of d.PRODUCTS){
+   const detail=await Page({params:Promise.resolve({slug:['products',product.id]})});
+   const out=html(detail);
+   for(const marker of ['مشخصات و جایگاه محصول','کاربردهای محصول','سایر محصولات','مسیر تولید در زنجیره فولاد'])assert.ok(out.includes(marker),`Missing ${marker} on ${product.id}`);
  }
  const services=await Page({params:Promise.resolve({slug:['suppliers']})});
  const servicesHtml=html(services);

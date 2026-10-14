@@ -9,7 +9,7 @@
 - Shared corporate RTL CSS (preserved from the first visual redesign)
 - Server-rendered/static generated content routes; only navigation and search are client components
 - **Static export**: the output (`out/`) can be hosted on Vercel or a conventional static web server
-- SVG concept assets are placeholders; official logo and factory photography must be supplied/approved before launch
+- Photographs for the four products and homepage/news visuals come from the official sisco.midhco.com website. The corporate logo SVG is still a temporary concept and needs the approved brand asset.
 
 > Tailwind is not included in this iteration. Reusing the already-designed CSS was intentional to minimize design regression. Sanity CMS is *recommended* but is **not yet integrated**; editorial content currently lives in `lib/site-data.ts`.
 
@@ -91,3 +91,11 @@ public/assets/            Illustrative vector placeholders
 4. Check build logs, review the generated Preview URL, verify mobile navigation and content, then arrange a controlled production-domain deployment.
 
 No secrets or environment variables are required for the current static version.
+
+## Official media and product pages
+
+- Home page now includes a three-slide editorial hero; product, news and complex imagery use the company's official image URLs.
+- Run `npm run sync:media` to mirror verified official JPGs to `public/media` and generate `lib/media-generated.ts`. `npm run build` performs this automatically; inaccessible assets gracefully fall back to the original URL. No stock-photography URL is used in these sections.
+- Product detail routes: `/products/concentrate/`, `/products/pellet/`, `/products/sponge/`, `/products/billet/`. The product profiles provide verified qualitative descriptions, chain-of-production context, usage and related products, with links to the original source page.
+- Assays, steel grade, chemical composition, dimensions, and pricing have deliberately been omitted because approved product data sheets were not provided.
+- The published site `sisco-midhco.vercel.app` remains a staging preview; check image-load/network panel from Iran and on mobile before domain switchover.

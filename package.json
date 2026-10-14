@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/sync-media.mjs && next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "test:content": "node tests/content.cjs",
     "test": "node tests/content.cjs && node tests/render.cjs",
-    "check": "npm run test && npm run typecheck"
+    "check": "npm run test && npm run typecheck",
+    "sync:media": "node scripts/sync-media.mjs"
   },
   "dependencies": {
     "next": "16.4.0",

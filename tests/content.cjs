@@ -18,6 +18,16 @@ function load(filename,dependencies={}){
 }
 const data=load('lib/site-data.ts');
 const routes=load('lib/routes.ts',{'./site-data':data});
+const details=load('lib/product-details.ts');
+const mediaMap=load('lib/media-generated.ts');
+const media=load('lib/media.ts',{'./media-generated':mediaMap});
+for(const product of data.PRODUCTS){
+ const d=details.PRODUCT_DETAILS[product.id];
+ assert.ok(d&&d.intro&&d.process&&d.facility&&d.stages.length>=3&&d.applications.length>=2,`Missing product details: ${product.id}`);
+ assert.ok(d.source.startsWith('https://sisco.midhco.com/fa/product/'),`Unverified official link ${product.id}`);
+ assert.ok(media.OFFICIAL_MEDIA[product.id].startsWith('https://sisco.midhco.com/upload/'));
+}
+assert.equal(Object.keys(media.OFFICIAL_MEDIA).length,10);
 assert.equal(data.MENU.length,9);
 assert.equal(data.PRODUCTS.length,4);
 assert.equal(data.COMPLEXES.length,2);

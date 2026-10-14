@@ -3,6 +3,9 @@ import {SITE,PRODUCTS,COMPLEXES,NEWS,MENU,EMPLOYEE} from '@/lib/site-data';
 import {resolveHref} from '@/lib/routes';
 import SmartLink from './SmartLink';
 import Icon from './Icon';
+import MediaPhoto from './MediaPhoto';
+import ProductDetail from './ProductDetail';
+import type {ProductId} from '@/lib/product-details';
 import {ActionLink,Detail,PageHero,Source} from './Interior';
 
 const infoLinks=[{title:'محصولات',href:'/products/'},{title:'مجتمع‌های تولیدی',href:'/complexes/'},{title:'ماموریت و راهبرد',href:'/info/mission/'},{title:'هیئت‌مدیره',href:'/info/board/'},{title:'ارتباط با ما',href:'/contact/'}];
@@ -17,10 +20,15 @@ export function AboutPage(){return <><PageHero kicker="هویت و تاریخچ�
 export function ProductsPage({id}:{id?:string}){
   const p=PRODUCTS.find(x=>x.id===id);
   if(id&&!p)return null;
-  if(!p)return <><PageHero kicker="زنجیره تولید" title="محصولات شرکت" desc="چهار محصول اصلی در امتداد زنجیره تولید فولاد"/><div className="inner-section"><div className="container"><div className="product-list">{PRODUCTS.map(product=><Link href={`/products/${product.id}/`} className="product-tile" key={product.id}><span className="chain-symbol">{product.icon}</span><h3>{product.title}</h3><p>{product.desc}</p><span className="action-link">جزئیات محصول <Icon name="arrow"/></span></Link>)}</div></div></div></>;
-  return <><PageHero kicker="محصولات شرکت" title={p.title} desc={p.en}/><Detail sideLinks={[{title:'همه محصولات',href:'/products/'},...PRODUCTS.filter(x=>x.id!==id).map(x=>({title:x.title,href:`/products/${x.id}/`})),{title:'تماس با شرکت',href:'/contact/'}]}>
-    <span className="tag">محصول {p.no} از ۰۴</span><h2 style={{marginTop:22}}>{p.title}</h2><p>{p.more}</p><div className="info-panel"><h2>در زنجیره ارزش شرکت</h2><p>{p.desc}</p></div><Source href={p.source} note="برای مشخصات فنی، تصاویر و اطلاعات دقیق محصول از صفحه رسمی محصولات استفاده کنید."/>
-  </Detail></>;
+  if(p)return <ProductDetail id={p.id as ProductId}/>;
+  return <><PageHero kicker="زنجیره تولید" title="محصولات شرکت" desc="چهار محصول اصلی در امتداد زنجیره تولید فولاد"/>
+    <div className="inner-section"><div className="container"><div className="product-list">
+      {PRODUCTS.map(product=><Link href={`/products/${product.id}/`} className="product-tile product-photo-tile" key={product.id}>
+        <MediaPhoto image={product.id as ProductId} alt={`تصویر ${product.title} در سایت فولاد سیرجان ایرانیان`}/>
+        <span className="product-list-caption">{product.en}</span><h3>{product.title}</h3><p>{product.desc}</p>
+        <span className="action-link">جزئیات محصول <Icon name="arrow"/></span>
+      </Link>)}
+    </div></div></div></>;
 }
 
 export function ComplexesPage({id}:{id?:string}){
@@ -28,13 +36,13 @@ export function ComplexesPage({id}:{id?:string}){
   if(id&&!c)return null;
   if(!c)return <><PageHero kicker="سایت‌های صنعتی" title="مجتمع‌های تولیدی" desc="حضور صنعتی در دو شهرستان سیرجان و بردسیر استان کرمان"/><div className="inner-section"><div className="container"><div className="complex-grid">{COMPLEXES.map((complex,i)=><Link href={`/complexes/${complex.id}/`} className="complex-card" key={complex.id}><div className="complex-content"><span className="complex-index">0{i+1} / {complex.en}</span><h3>{complex.title}</h3><p>{complex.desc}</p><div className="complex-footer"><span>{complex.facilities.length} واحد معرفی‌شده</span><span className="complex-arrow"><Icon name="arrow"/></span></div></div></Link>)}</div></div></div></>;
   return <><PageHero kicker="مجتمع‌های تولیدی" title={c.title} desc={c.subtitle}/><Detail sideLinks={[{title:'تمام مجتمع‌ها',href:'/complexes/'},{title:'محصولات',href:'/products/'},{title:'درباره شرکت',href:'/about/'}]}>
-    <div className={`interior-photo ${id==='bardsir'?'bardsir':''}`} role="img" aria-label={`نمای گرافیکی مجتمع ${c.short}`}/>
+    <MediaPhoto image={c.photo==='sirjan'?'sirjan':'bardsir'} className="interior-photo real-photo" alt={`عکس مرتبط با زنجیره تولید ${c.short} از وب‌سایت شرکت`}/>
     <h2>معرفی {c.short}</h2><p>{c.desc}</p><h2 style={{marginTop:26}}>واحدهای این مجتمع</h2>
     <div className="facility-list">{c.facilities.map(f=><div className="facility" key={f.title}><span>{f.title}</span><SmartLink href={f.source}>اطلاعات بیشتر <Icon name="external" size={13}/></SmartLink></div>)}</div>
     <Source href={SITE.legacy}/>
   </Detail></>;
 }
-export function NewsPage(){return <><PageHero kicker="رویدادها و رسانه" title="اخبار و اطلاعیه‌ها" desc="اخبار تولید، پروژه‌های توسعه و آگهی‌های شرکت"/><div className="inner-section"><div className="container"><div className="news-grid">{NEWS.map(n=><article className="news-card" key={n.id}><div className="news-img"><span className="news-pill">{n.kind}</span></div><div className="news-copy"><h3>{n.title}</h3><p>{n.desc}</p><ActionLink title="آرشیو رسمی" href={n.href}/></div></article>)}</div><div className="source-panel" style={{marginTop:25}}>اخبار این نمونه به‌صورت ایستا نمایش داده شده‌اند. برای تازه‌ترین اطلاعیه‌ها <SmartLink href={SITE.legacy+'/fa/news.html'}>آرشیو رسمی شرکت</SmartLink> را ببینید.</div></div></div></>}
+export function NewsPage(){return <><PageHero kicker="رویدادها و رسانه" title="اخبار و اطلاعیه‌ها" desc="اخبار تولید، پروژه‌های توسعه و آگهی‌های شرکت"/><div className="inner-section"><div className="container"><div className="news-grid">{NEWS.map(n=><article className="news-card" key={n.id}><div className="news-img"><MediaPhoto image={`news${NEWS.indexOf(n)}` as 'news0'|'news1'|'news2'} alt={n.title}/><span className="news-pill">{n.kind}</span></div><div className="news-copy"><h3>{n.title}</h3><p>{n.desc}</p><ActionLink title="آرشیو رسمی" href={n.href}/></div></article>)}</div><div className="source-panel" style={{marginTop:25}}>اخبار این نمونه به‌صورت ایستا نمایش داده شده‌اند. برای تازه‌ترین اطلاعیه‌ها <SmartLink href={SITE.legacy+'/fa/news.html'}>آرشیو رسمی شرکت</SmartLink> را ببینید.</div></div></div></>}
 
 export function ServicesPage({id}:{id:'shareholders'|'customers'|'suppliers'}){
   const data={shareholders:{title:'امور سهامداران',desc:'دسترسی به گزارش‌ها، صورت‌های مالی و خدمات سهامداران شرکت.'},customers:{title:'خدمات مشتریان',desc:'دسترسی به پرتال مستقل فروش و مشتریان.'},suppliers:{title:'تأمین‌کنندگان',desc:'اطلاع‌رسانی و ارجاع به سامانه مستقل مدیریت تأمین‌کنندگان و معاملات الکترونیک.'}}[id];
