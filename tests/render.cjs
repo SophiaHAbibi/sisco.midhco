@@ -56,6 +56,13 @@ function html(node){
    const out=html(detail);
    for(const marker of ['مشخصات و جایگاه محصول','کاربردهای محصول','سایر محصولات','مسیر تولید در زنجیره فولاد'])assert.ok(out.includes(marker),`Missing ${marker} on ${product.id}`);
  }
+ for(const product of d.PRODUCTS){
+   const detail=await Page({params:Promise.resolve({slug:['products',product.id]})});
+   const out=html(detail);
+   assert.ok(out.includes('journey-step'), 'Missing interactive stepper on '+product.id);
+   assert.ok(out.includes('product-spec-header'), 'Missing product spec design on '+product.id);
+   assert.ok(out.includes('product-applications-heading'), 'Missing application layout on '+product.id);
+ }
  const services=await Page({params:Promise.resolve({slug:['suppliers']})});
  const servicesHtml=html(services);
  assert.ok(servicesHtml.includes('سامانه‌های معرفی‌شده مستقل'));
